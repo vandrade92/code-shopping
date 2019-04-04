@@ -8,52 +8,32 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+         return Category::all();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+         $category = Category::create($request->all() + ['slug' => 'teste']);
+         $category->refresh();
+         
+         return $category;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \CodeShopping\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
     public function show(Category $category)
     {
-        //
+         return $category;
     }
 
     public function update(Request $request, Category $category)
     {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \CodeShopping\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
+    }
 
     public function destroy(Category $category)
     {
-        //
+
     }
 }
