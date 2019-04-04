@@ -40,6 +40,11 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
+          $category->delete();
 
+          return response([],204);
+          //HTTP de status de sucesso 204 No Content indica
+          //que a solicitação foi bem sucedida e o cliente
+          //não precisa sair da página atual.
     }
 }
