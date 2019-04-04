@@ -1,7 +1,8 @@
 <?php
 
-namespace CodeShopping\Http\Controllers;
+namespace CodeShopping\Http\Controllers\Api;
 
+use CodeShopping\Http\Controllers\Controller;
 use CodeShopping\Models\Category;
 use Illuminate\Http\Request;
 
@@ -13,16 +14,6 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
     {
         //
     }
@@ -49,24 +40,6 @@ class CategoryController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \CodeShopping\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \CodeShopping\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Category $category)
     {
         //
@@ -78,6 +51,7 @@ class CategoryController extends Controller
      * @param  \CodeShopping\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
+
     public function destroy(Category $category)
     {
         //
