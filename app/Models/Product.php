@@ -10,7 +10,7 @@ class Product extends Model
 {
      use Sluggable;
 
-     protected $fillable = ['name', 'description', 'price', 'slug'];
+     protected $fillable = ['name', 'description', 'price', 'active'];
 
      public function sluggable(): array
     {
