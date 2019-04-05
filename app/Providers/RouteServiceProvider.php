@@ -4,7 +4,8 @@ namespace CodeShopping\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-
+use CodeShopping\Models\Category;
+use CodeShopping\Models\Product;
 class RouteServiceProvider extends ServiceProvider
 {
     /**
@@ -23,9 +24,23 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+         parent::boot();
 
-        parent::boot();
+         Route::bind('category', function($value)
+         {
+
+          $collection = Category::whereId($value)->orWhere('slug', $value)->get();
+          return $collection->first();
+
+         });
+
+         Route::bind('product', function($value)
+         {
+
+          $collection = Product::whereId($value)->orWhere('slug', $value)->get();
+          return $collection->first();
+
+         });
     }
 
     /**
