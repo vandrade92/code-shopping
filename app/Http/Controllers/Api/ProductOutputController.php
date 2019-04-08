@@ -19,7 +19,8 @@ class ProductOutputController extends Controller
 
     public function store(ProductOutputRequest $request)
      {
-         //
+          $output = ProductOutput::create($request->all());
+          return new ProductOutputResource($output);
      }
 
      public function show(ProductOutput $output)
