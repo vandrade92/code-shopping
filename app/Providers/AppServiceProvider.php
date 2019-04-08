@@ -4,6 +4,7 @@ namespace CodeShopping\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use CodeShopping\Models\ProductInput;
+use CodeShopping\Models\ProductOutput;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,17 @@ class AppServiceProvider extends ServiceProvider
              $product = $input->product;
              $product->stock += $input->amount;
              $product->save();
+        });
+
+        \Schema::defaultStringLength(191);
+        ProductOutput::created(function($output){
+            $product = $output->product;
+            $product->stock -= $output->amount;
+            if($product->stock < 0)
+            {
+                 throw new \Exception("Estoque de {$product->name} não pode ser negativo");
+            }
+            $product->save();
         });
     }
 
