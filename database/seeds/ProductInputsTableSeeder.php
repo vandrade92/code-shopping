@@ -23,7 +23,6 @@ class ProductInputsTableSeeder extends Seeder
                $input->save();
                $product->stock += $input->amount;
                $product->save();
-
         });
     }
 }
