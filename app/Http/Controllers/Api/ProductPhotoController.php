@@ -18,14 +18,14 @@ class ProductPhotoController extends Controller
 
     public function store(Request $request)
     {
-        //
+
     }
 
     public function show(Product $product, ProductPhoto $photo)
     {
         if($product->id != $photo->product_id)
         {
-             abort(404,'No photo for this product id');
+             abort(404,'There is no photo for this product');
         };
         return $photo;
     }
