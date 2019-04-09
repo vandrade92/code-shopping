@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace CodeShopping\Models;
 
@@ -15,19 +16,39 @@ class ProductPhoto extends Model
 
      public static function photosPath($productId)
      {
-
           $path = self::PRODUCTS_PATH;
-
           return storage_path("{$path}/{$productId}");
      }
 
-     public static function uploadFiles($productId, array $files)
+     public static function createWithPhotosFiles(int $productId, array $files) : Collection
+     {
+          self::uploadFiles($productId, $files);
+          $photos = self::createPhotoModels($productId, $files);
+          return new Collection($photos);
+     }
+
+     public static function uploadFiles(int $productId, array $files)
      {
           $dir = self::photosDir($productId);
           foreach($files as $file)
           {
                $file->store($dir,['disk' => 'public']);
           }
+     }
+
+     private static function createPhotoModels(int $productId, array $files) : array
+     {
+          $photos=[];
+          foreach($files as $file)
+          {
+               $photos[] = self::create([
+                    'file_name' => $file->hashName(),
+                    'product_id' => $productId,
+
+               ]);
+          }
+
+          return $photos;
      }
 
      public function getPhotoUrlAttribute()
@@ -41,6 +62,11 @@ class ProductPhoto extends Model
           $dir = self::DIR_PRODUCTS;
           return "{$dir}/{$productId}";
      }
+
+
+
+
+
 
      //Many to One
      public function product()
