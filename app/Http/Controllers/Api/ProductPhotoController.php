@@ -7,13 +7,14 @@ use CodeShopping\Models\ProductPhoto;
 use CodeShopping\Models\Product;
 use Illuminate\Http\Request;
 use CodeShopping\Http\Resources\ProductPhotoResource;
+use CodeShopping\Http\Resources\ProductPhotoCollection;
 
 class ProductPhotoController extends Controller
 {
 
     public function index(Product $product)
     {
-        return ProductPhotoResource::collection($product->photos);
+        return new ProductPhotoCollection($product->photos, $product);
     }
 
     public function store(Request $request)
@@ -27,7 +28,7 @@ class ProductPhotoController extends Controller
         {
              abort(404,'There is no photo for this product');
         };
-        return $photo;
+        return new ProductPhotoResource($photo);
     }
 
     public function update(Request $request, ProductPhoto $productPhoto)
