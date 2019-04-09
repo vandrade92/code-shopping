@@ -78,6 +78,7 @@ class ProductPhotosTableSeeder extends Seeder
               str_random(16).'.' . $photoFile->getExtension()
          );
 
+         ProductPhoto::uploadFiles($productId,[$uploadFile]);
          return $uploadFile->hashName();
     }
 }
