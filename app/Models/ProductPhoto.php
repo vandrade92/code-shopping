@@ -5,6 +5,7 @@ namespace CodeShopping\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Database\Eloquent\Collection;
 
 class ProductPhoto extends Model
 {
@@ -38,7 +39,7 @@ class ProductPhoto extends Model
 
      private static function createPhotoModels(int $productId, array $files) : array
      {
-          $photos=[];
+          $photos = [];
           foreach($files as $file)
           {
                $photos[] = self::create([
@@ -62,11 +63,6 @@ class ProductPhoto extends Model
           $dir = self::DIR_PRODUCTS;
           return "{$dir}/{$productId}";
      }
-
-
-
-
-
 
      //Many to One
      public function product()
