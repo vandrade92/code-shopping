@@ -21,25 +21,36 @@ class ProductPhotoController extends Controller
     public function store(ProductPhotoRequest $request, Product $product)
     {
          $photos = ProductPhoto::createWithPhotosFiles($product->id, $request->photos);
-         return new ProductPhotoCollection($photos,$product);
+         return response()->json(new ProductPhotoCollection($photos,$product),201);
     }
 
     public function show(Product $product, ProductPhoto $photo)
     {
-        if($product->id != $photo->product_id)
-        {
-             abort(404,'There is no photo for this product');
-        };
+        $this->assertProductPhoto($photo, $product);
         return new ProductPhotoResource($photo);
     }
 
-    public function update(Request $request, ProductPhoto $productPhoto)
+    public function update(Request $request, Product $product, ProductPhoto $photo)
     {
-        //
+         $this->assertProductPhoto($photo, $product);
+         $photo = $photo->updateWithPhoto($request->photo);
+         return new ProductPhotoResource($photo);
+
     }
 
-    public function destroy(ProductPhoto $productPhoto)
+    private function assertProductPhoto(ProductPhoto $photo, Product $product)
     {
-        //
+         if($product->id != $photo->product_id)
+         {
+              abort(404);
+         };
+    }
+
+    public function destroy(Product $product, $productPhotoId)
+    {
+        $productPhoto = ProductPhoto::find($productPhotoId);
+        $productPhoto->deletePhoto($productPhoto->file_name);
+        $productPhoto->delete();
+        return response()->json([],204);
     }
 }

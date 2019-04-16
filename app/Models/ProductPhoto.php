@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Database\Eloquent\Collection;
 
+
 class ProductPhoto extends Model
 {
      const BASE_PATH = 'app/public';
@@ -36,6 +37,31 @@ class ProductPhoto extends Model
                throw $e;
           }
 
+     }
+
+     public function updateWithPhoto(UploadedFile $file) : ProductPhoto
+     {
+          try
+          {
+               self::uploadFiles($this->product_id, [$file]);
+               \DB::beginTransaction();
+               $this->deletePhoto($this->file_name);
+               $this->file_name = $file->hashName();
+               $this->save();
+               \DB::commit();
+               return $this;
+          } catch(\Exception $e){
+               self::deleteFiles($this->product_id, [$file]);
+               \DB::rollBack();
+               throw $e;
+          }
+
+     }
+
+     public function deletePhoto($fileName)
+     {
+          $dir = self::photosDir($this->product_id);
+          \Storage::disk('public')->delete("{$dir}/{$fileName}");
      }
 
      private static function deleteFiles(int $productId, array $files)
