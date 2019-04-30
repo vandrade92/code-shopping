@@ -14,7 +14,7 @@ class ProductPhoto extends Model
      const DIR_PRODUCTS = 'products';
      const PRODUCTS_PATH = self::BASE_PATH . '/' . self::DIR_PRODUCTS;
 
-     protected $fillable =['file_name', 'product_id'];
+     protected $fillable = ['file_name', 'product_id'];
 
      public static function photosPath($productId)
      {
@@ -58,7 +58,22 @@ class ProductPhoto extends Model
 
      }
 
-     public function deletePhoto($fileName)
+     public function deleteWithPhoto(): bool
+     {
+          try
+          {
+               \DB::beginTransaction();
+               $this->deletePhoto($this->file_name);
+               $result = $this->delete();
+               \DB::commit();
+               return $result;
+          } catch(\Exception $e){
+               \DB::rollBack();
+               throw $e;
+          }
+     }
+
+     private function deletePhoto($fileName)
      {
           $dir = self::photosDir($this->product_id);
           \Storage::disk('public')->delete("{$dir}/{$fileName}");
