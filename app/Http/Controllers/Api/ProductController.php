@@ -7,13 +7,15 @@ use CodeShopping\Http\Requests\ProductRequest;
 use CodeShopping\Models\Product;
 use Illuminate\Http\Request;
 use CodeShopping\Http\Resources\ProductResource;
+use Illuminate\Database\Eloquent\Builder;
 
 class ProductController extends Controller
 {
     public function index()
     {
-          $product = Product::paginate(10);
-          return ProductResource::collection($product);
+          $query = Product::query();
+          $products = $query->paginate(10);
+          return ProductResource::collection($products);
     }
 
     public function store(ProductRequest $request)
@@ -43,4 +45,5 @@ class ProductController extends Controller
 
        return response()->json([],204);
     }
+
 }
