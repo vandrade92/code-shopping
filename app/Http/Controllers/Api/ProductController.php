@@ -52,4 +52,13 @@ class ProductController extends Controller
          return response()->json([], 204);
     }
 
+    private function onlyTrashedIfRequested(Request $request, Builder $query)
+    {
+         if($request->get('trashed') == 1)
+         {
+              $query = $query->onlyTrashed();
+         }
+         return $query;
+    }
+
 }
