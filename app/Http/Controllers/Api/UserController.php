@@ -8,6 +8,7 @@ use CodeShopping\Models\User;
 use CodeShopping\Http\Controllers\Controller;
 use CodeShopping\Http\Requests\UserRequest;
 use CodeShopping\Common\OnlyTrashed;
+use CodeShopping\Events\UserCreatedEvent;
 
 
 class UserController extends Controller
@@ -26,6 +27,7 @@ class UserController extends Controller
      public function store(UserRequest $request)
      {
           $user = User::create($request->all());
+          event(new UserCreatedEvent($user));
           return new UserResource($user);
 
      }
