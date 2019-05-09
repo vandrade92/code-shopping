@@ -37,12 +37,12 @@ class User extends Authenticatable implements JWTSubject
          return parent::fill($attributes);
     }
 
-    public function getJWTIdentifier()
+    public function getJWTIdentifier() // Identificador do user.
     {
          return $this->id;
     }
 
-    public function getJWTCustomClaims()
+    public function getJWTCustomClaims() //Outras informações para serem passadas no payload.
     {
          return [
               'email' => $this->email,
