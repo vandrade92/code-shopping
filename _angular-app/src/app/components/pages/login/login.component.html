@@ -2,9 +2,9 @@
   <h1 class="h3 mb-3 font-weight-normal">Code Shopping - Login</h1>
   <label for="email" class="sr-only">E-mail</label>
   <input type="email" id="inputEmail" class="form-control" placeholder="Digite o e-mail" required autofocus [value]="'valor'">
-  <label for="password" class="sr-only">Password</label>
-  <input type="password" id="inputPassword" class="form-control" placeholder="Digite sua senha" required>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+  <label for="password" class="sr-only" >Password</label>
+  <input type="password" id="inputPassword" class="form-control" placeholder="Digite sua senha" required (keypress)="digitou($event)">
+  <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="meclicou($event)">Entrar</button>
   {{ email }}
   {{ obj.email }}
   {{ obj.array[0] }}

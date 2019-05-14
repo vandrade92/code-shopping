@@ -23,4 +23,12 @@ export class LoginComponent implements OnInit {
     }, 3000)
   }
 
+  meclicou($event:KeyboardEvent){
+    console.log($event)
+  }
+
+  digitou($event){
+    console.log($event)
+  }
+
 }
