@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
      array: [1]
   };
 
+  //simbolo [] - o TS reflete alterações no template --- Dados ----> template
   constructor() { }
 
   ngOnInit() {
