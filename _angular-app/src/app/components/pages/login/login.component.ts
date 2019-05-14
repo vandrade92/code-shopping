@@ -1,34 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'login',
+  selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 
-  email = 'admin@user.com';
-  obj = {
-    email: 'outroemail.com',
-     array: [1]
+  credentials = {
+    email: '',
+    password: ''
   };
 
-  //simbolo [] - o TS reflete alterações no template --- Dados ----> template
   constructor() { }
 
-  ngOnInit() {
-
-    setTimeout( ()=> {
-      this.email = 'qualquer coisa';
-    }, 3000)
-  }
-
-  meclicou($event:KeyboardEvent){
-    console.log($event)
-  }
-
-  digitou($event){
-    console.log($event)
-  }
-
+  ngOnInit() { }
 }
