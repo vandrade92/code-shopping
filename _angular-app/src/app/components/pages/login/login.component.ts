@@ -9,8 +9,8 @@ import { HttpClient } from '@angular/common/http';
 export class LoginComponent implements OnInit {
 
   credentials = {
-    email: '',
-    password: ''
+    email: 'admin@user.com',
+    password: 'secret'
   };
 
   constructor(private http: HttpClient) {// injeção de depedência automática
@@ -20,8 +20,17 @@ export class LoginComponent implements OnInit {
   ngOnInit() { }
 
   submit() {
-    this.http.post('http://localhost:8000/api/login', this.credentials)
-        .subscribe((data) => console.log(data));
+    // generics - Java
+    this.http.post<any>('http://localhost:8000/api/login', this.credentials)
+        .subscribe((data) => {
+          const token = data.token;
+          this.http.get('http://localhost:8000/api/categories', {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          })
+              .subscribe(data => console.log(data));
+        });
     return false;
   }
 }
