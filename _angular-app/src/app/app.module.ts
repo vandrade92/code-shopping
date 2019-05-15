@@ -20,6 +20,12 @@ const routes: Routes = [
   {
     path: 'categories/list', component: CategoryListComponent
   },
+
+  {
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
