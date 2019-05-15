@@ -16,11 +16,9 @@ const routes: Routes = [
   {
     path: 'login', component: LoginComponent
   },
-
   {
     path: 'categories/list', component: CategoryListComponent
   },
-
   {
     path: '',
     redirectTo: '/login',
@@ -39,7 +37,7 @@ const routes: Routes = [
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, {enableTracing: true})
   ],
   providers: [],
   bootstrap: [AppComponent]
