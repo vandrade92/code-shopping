@@ -9,7 +9,7 @@ export class AlertErrorComponent implements OnInit {
 
   constructor() { }
 
-  private _show = false;
+  protected _show = false;
 
   @Input() set show(value) {
     this._show = value;
