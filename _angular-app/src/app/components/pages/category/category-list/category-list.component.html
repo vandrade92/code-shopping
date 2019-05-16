@@ -23,7 +23,7 @@
         <td>{{ category.id }}</td>
         <td>{{ category.name }}</td>
         <td>
-            <i class='fas' [ngClass]="{'fa-check' : category.active, 'fa-times': !category.active}"></i>
+          <i class='fas' [ngClass]="{'fa-check' : category.active, 'fa-times': !category.active}"></i>
         </td>
         <td>{{ category.created_at.date | date: 'dd/MM/yyyy'}}</td>
         <td>Editar | Excluir</td>
@@ -32,27 +32,28 @@
   </table>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Nova Categoria</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-      </div>
-      <div class="modal-body">
-        <form>
+<form (submit)="submit()">
+  <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Nova Categoria</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
           <div class="form-group">
             <label for="name">Nome</label>
-            <input type="text" name="name" id="name" class="form-control" placeholder="Digite o Nome da Categoria" required>
+            <input type="text" name="name" id="name" class="form-control" required
+                  [(ngModel)]="category.name">
           </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="submit" class="btn btn-primary">Incluir</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="submit" class="btn btn-primary">Incluir</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</form>

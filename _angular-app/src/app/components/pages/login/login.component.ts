@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() { }
 
   submit() {
-    // generics - Java
+    console.log('submit login');
     this.http.post<any>('http://localhost:8000/api/login', this.credentials)
         .subscribe((data) => {
           const token = data.token;
