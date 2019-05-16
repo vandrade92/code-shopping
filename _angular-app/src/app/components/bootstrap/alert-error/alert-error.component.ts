@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'alert-error',
@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./alert-error.component.css']
 })
 export class AlertErrorComponent implements OnInit {
+  @Input()
+  show = false;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  hide() {
+    this.show = false;
   }
 
 }

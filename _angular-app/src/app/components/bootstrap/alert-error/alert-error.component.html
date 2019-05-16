@@ -1,7 +1,7 @@
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <button type="button" class="close" aria-label="Close">
+<div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="show">
+    <button type="button" class="close" aria-label="Close" (click)="hide()">
       <span aria-hidden="true">&times;</span>
       <span class="sr-only">Close</span>
     </button>
     <ng-content></ng-content>
-  </div>
+</div>
