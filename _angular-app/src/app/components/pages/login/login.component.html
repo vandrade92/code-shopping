@@ -1,4 +1,4 @@
-<div class="col-md-4 offset-4" style="margin-top: 10px">
+<div class="col-md-4 offset-4" style="margin-top: 10px" *ngIf="showMessageError">
   <alert-error>Credenciais Inválidas</alert-error>
 </div>
 <form class="form-signin" (submit)="submit()">
