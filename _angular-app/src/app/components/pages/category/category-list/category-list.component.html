@@ -32,7 +32,7 @@
   <button type="button" (click)="showModal()" class="btn btn-primary">Abrir Modal</button>
 </div>
 
-<modal>
+<modal (onHide)="hideModal($event)">
   <div modal-title>
     Título
   </div>
