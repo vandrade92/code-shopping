@@ -40,8 +40,8 @@ export class CategoryListComponent implements OnInit {
             })
             .subscribe((category) => {
               console.log(category);
+              this.modal.hide();
               this.getCategories();
-              $('#modelId').modal('hide');
             });
   }
 
@@ -61,9 +61,6 @@ export class CategoryListComponent implements OnInit {
 
   showModal() {
     this.modal.show();
-    setTimeout(() => {
-      this.modal.hide();
-    }, 3000);
   }
 
   hideModal($event: Event) {
