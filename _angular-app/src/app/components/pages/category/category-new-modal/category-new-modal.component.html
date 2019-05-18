@@ -1,0 +1,15 @@
+<form (submit)="submit()">
+  <modal (onHide)="hideModal($event)">
+    <div modal-title> Nova Categoria</div>
+    <div modal-body>
+      <div class="form-group">
+        <label for="name">Nome</label>
+        <input type="text" name="name" id="name" class="form-control" placeholder="Digite o Nome" aria-describedby="helpId" required
+                [(ngModel)]="category.name">
+      </div>
+    </div>
+    <div modal-footer>
+      <button type="submit" class="btn btn-primary">Incluir</button>
+    </div>
+  </modal>
+</form>

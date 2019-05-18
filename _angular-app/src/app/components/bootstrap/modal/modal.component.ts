@@ -3,11 +3,13 @@ import { Component, OnInit, ElementRef, EventEmitter, Output } from '@angular/co
 declare const $;
 
 @Component({
+// tslint:disable-next-line: component-selector
   selector: 'modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent implements OnInit {
+// tslint:disable-next-line: no-output-on-prefix
   @Output() onHide: EventEmitter<Event> = new EventEmitter<Event>();
 
   constructor(private element: ElementRef) {
