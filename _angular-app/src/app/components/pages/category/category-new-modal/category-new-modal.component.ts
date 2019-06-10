@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { ModalComponent } from './../../../bootstrap/modal/modal.component';
 
 @Component({
@@ -17,6 +17,8 @@ export class CategoryNewModalComponent implements OnInit {
   @ViewChild(ModalComponent)
   modal: ModalComponent;
 
+  @Output() onSuccess: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onError: EventEmitter<HttpErrorResponse> = new EventEmitter<HttpErrorResponse>();
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -32,10 +34,10 @@ export class CategoryNewModalComponent implements OnInit {
               }
             })
             .subscribe((category) => {
-              console.log(category);
+              this.onSuccess.emit(category);
               this.modal.hide();
               // this.getCategories();
-            });
+            }, error => this.onError.emit(error));
   }
 
   showModal() {
